@@ -21,7 +21,7 @@ function rafraichirPortrait() {
     <div class="portrait-title">Grande Maréchale So-min-ae — Portrait Officiel n°1</div>
 
     <div class="portrait-frame" id="portrait-frame">
-      <img src="../La selection 5.jpg" alt="Grande Maréchale So-min-ae"
+      <img src="imgs/La selection 5.jpg" alt="Grande Maréchale So-min-ae"
            style="display:block; width:100%; height:100%; object-fit:cover; object-position:top;
                   user-select:none; -webkit-user-drag:none; pointer-events:none;">
       <canvas id="portrait-canvas"

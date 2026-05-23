@@ -15,7 +15,7 @@ function rafraichirGalerie() {
 
   const items = PORTRAITS_GALERIE.map(p => `
     <div class="galerie-item ${p.id === actuel ? 'actif' : ''}" onclick="choisirPortrait('${p.id}')">
-      <img src="../La selection ${p.id}.jpg" alt="${p.label}">
+      <img src="imgs/La selection ${p.id}.jpg" alt="${p.label}">
       <div class="galerie-item-footer">
         <span class="galerie-item-label">${p.label}</span>
         ${p.id === actuel ? '<span class="galerie-item-badge">✓</span>' : ''}
@@ -39,7 +39,7 @@ function choisirPortrait(id) {
 }
 
 function appliquerWallpaper() {
-  const src = '../La selection ' + (G.portraitWallpaper || '3') + '.jpg';
+  const src = 'imgs/La selection ' + (G.portraitWallpaper || '3') + '.jpg';
   const home = document.getElementById('home-wallpaper-img');
   const lock = document.getElementById('lock-wallpaper-img');
   if (home) home.src = src;

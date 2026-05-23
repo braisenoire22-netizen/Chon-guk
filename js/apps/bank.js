@@ -106,7 +106,7 @@ function rafraichirBanque() {
       </div>
 
       <div class="offrande-billet-wrap" id="offrande-flash">
-        <img src="../Yo Min-ae/billet2.png" alt="Billet du Régime" class="offrande-billet">
+        <img src="imgs/billet2.png" alt="Billet du Régime" class="offrande-billet">
       </div>
 
       <div class="offrande-btns">
