@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chŏn-guk OS — La Sélection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="css/style.css">
+</head>
+</head>
+<body>
+
+<div id="phone">
+  <!-- Encoche -->
+  <div id="screens">
+
+    <!-- ====================================================
+         BOOT SCREEN
+         ==================================================== -->
+    <div class="screen active" id="screen-boot">
+      <div class="boot-logo">
+        <div class="boot-seal">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="46" fill="none" stroke="#8B0000" stroke-width="2.5"/>
+            <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+            <polygon points="50,16 56,34 75,34 61,45 66,63 50,52 34,63 39,45 25,34 44,34" fill="#8B0000" opacity="0.9"/>
+            <text x="50" y="77" text-anchor="middle" font-family="serif" font-size="7" fill="rgba(201,168,76,0.7)" letter-spacing="1.5">RDP CHON-GUK</text>
+          </svg>
+        </div>
+        <div class="boot-name">Chŏn-guk OS</div>
+        <div class="boot-os">v1.0 — Edition Officielle du Régime</div>
+        <div class="boot-bar">
+          <div class="boot-bar-fill" id="boot-bar-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================
+         ONBOARDING — INSCRIPTION
+         ==================================================== -->
+    <div class="screen" id="screen-onboarding">
+      <div class="status-bar onboard-status">
+        <span class="status-time" id="onboard-time">--:--</span>
+        <div class="status-icons">
+          <span class="status-icon">●●●</span>
+          <div class="status-battery">
+            <div class="battery-bar"><div class="battery-fill"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="onboard-header">
+        <div class="onboard-seal">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="70" height="70">
+            <circle cx="50" cy="50" r="46" fill="none" stroke="#8B0000" stroke-width="2.5"/>
+            <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+            <polygon points="50,16 56,34 75,34 61,45 66,63 50,52 34,63 39,45 25,34 44,34" fill="#8B0000" opacity="0.9"/>
+            <text x="50" y="77" text-anchor="middle" font-family="serif" font-size="7" fill="rgba(201,168,76,0.7)" letter-spacing="1.5">RDP CHON-GUK</text>
+          </svg>
+        </div>
+        <div class="onboard-republic">République Démocratique et Populaire de Chŏn-guk</div>
+        <div class="onboard-title">Demande de Citoyenneté de Service</div>
+        <div class="onboard-sub">Formulaire CIT-447 — Décret n°12 de La Grande Maréchale</div>
+      </div>
+
+      <div class="onboard-divider"></div>
+
+      <div class="onboard-form">
+        <div class="form-group">
+          <label class="form-label" for="inp-prenom">Prénom — tel qu'il apparaîtra dans les registres</label>
+          <input class="form-input" type="text" id="inp-prenom" placeholder="Votre prénom" maxlength="30" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="inp-nom">Nom de famille</label>
+          <input class="form-input" type="text" id="inp-nom" placeholder="Votre nom" maxlength="30" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="inp-province">Province d'origine</label>
+          <select class="form-select" id="inp-province">
+            <option value="">— Choisissez —</option>
+            <option value="Province Nord">Province Nord — Districts industriels</option>
+            <option value="Province Sud">Province Sud — Districts agricoles</option>
+            <option value="Province Est">Province Est — Districts miniers</option>
+            <option value="Province Centrale">Province Centrale — Districts administratifs</option>
+            <option value="Province Cotiere">Province Cotière — Districts de pêche</option>
+          </select>
+        </div>
+
+        <div class="form-oath">
+          <div class="form-oath-title">Serment du Citoyen de Service</div>
+          <div class="form-oath-text">
+            Je jure devant La Grande Maréchale So-min-ae et devant le peuple de Chŏn-guk de consacrer mon existence au service de la République. Je reconnais que mon poste, mon logement et ma subsistance sont des dons accordés par sa bienveillance.
+          </div>
+        </div>
+
+        <div class="form-checkbox-group">
+          <input type="checkbox" id="oath1" onchange="verifierOnboarding()">
+          <label for="oath1">Je prête le Serment du Citoyen de Service dans son intégralité.</label>
+        </div>
+        <div class="form-checkbox-group">
+          <input type="checkbox" id="oath2" onchange="verifierOnboarding()">
+          <label for="oath2">Je renonce à toute propriété antérieure. Ce que je possède, je le possède par grâce de la République.</label>
+        </div>
+        <div class="form-checkbox-group">
+          <input type="checkbox" id="oath3" onchange="verifierOnboarding()">
+          <label for="oath3">La Grande Maréchale So-min-ae a le droit et le devoir d'évaluer ma dévotion en permanence.</label>
+        </div>
+
+        <div style="margin-top: 24px;">
+          <button class="btn-primary" id="btn-submit-onboard" onclick="soumettreOnboarding()" disabled>
+            Soumettre ma demande de citoyenneté
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================
+         TRAITEMENT
+         ==================================================== -->
+    <div class="screen" id="screen-processing">
+      <div class="processing-content">
+        <div class="spinner-regime"></div>
+        <div class="processing-title">Comité Central d'Évaluation</div>
+        <div class="processing-step" id="processing-step">Transmission en cours...</div>
+      </div>
+    </div>
+
+    <!-- ====================================================
+         ATTRIBUTION
+         ==================================================== -->
+    <div class="screen" id="screen-attribution">
+      <div class="status-bar onboard-status">
+        <span class="status-time" id="attr-time">--:--</span>
+        <div class="status-icons">
+          <span class="status-icon">●●●</span>
+          <div class="status-battery">
+            <div class="battery-bar"><div class="battery-fill"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="attribution-content">
+        <div class="attribution-header">
+          <div class="attribution-decision">Décision Officielle</div>
+          <div class="attribution-accepted">Demande Acceptée</div>
+          <div class="attribution-citizen-num" id="attr-num">CIT-000000</div>
+          <div style="font-size:12px; color:var(--texte-dim); margin-top:6px;">
+            La Grande Maréchale So-min-ae a examiné votre dossier.
+          </div>
+        </div>
+
+        <div class="attribution-letter" id="attr-letter">
+          Chargement...
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-header-label">Attribution officielle</span>
+          </div>
+          <div class="card-body">
+            <div class="stat-row">
+              <span class="stat-row-label">Citoyen</span>
+              <span class="stat-row-value" id="attr-name">—</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-row-label">Poste</span>
+              <span class="stat-row-value" id="attr-job">—</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-row-label">Bloc de résidence</span>
+              <span class="stat-row-value" id="attr-bloc">—</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-row-label">Logement</span>
+              <span class="stat-row-value" id="attr-housing">—</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-row-label">Salaire</span>
+              <span class="stat-row-value or" id="attr-salary">—</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-row-label">Note initiale</span>
+              <span class="stat-row-value">0 / 3500</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 8px;">
+          <button class="btn-primary" onclick="lancerJeu()">
+            Rejoindre Chŏn-guk — commencer à servir
+          </button>
+        </div>
+        <div style="height: 30px;"></div>
+      </div>
+    </div>
+
+    <!-- ====================================================
+         LOCK SCREEN
+         ==================================================== -->
+    <div class="screen" id="screen-lock">
+      <div class="lock-wallpaper" id="lock-wallpaper">
+        <img src="../La selection 3.jpg" alt="" id="lock-wallpaper-img">
+      </div>
+      <div class="lock-overlay">
+        <div class="lock-time" id="lock-time">00:00</div>
+        <div class="lock-date" id="lock-date">—</div>
+        <div class="lock-regime-badge">
+          <span>Chŏn-guk OS — Service Actif</span>
+        </div>
+
+        <div class="lock-notifications" id="lock-notifs">
+          <div class="lock-notif">
+            <div class="lock-notif-icon">📰</div>
+            <div class="lock-notif-content">
+              <div class="lock-notif-app">Actualités de Chŏn-guk</div>
+              <div class="lock-notif-text">Lecture des actualités du jour obligatoire avant 22h00.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lock-swipe" onclick="deverrouiller()">
+          <div class="lock-swipe-text">Glisser pour déverrouiller</div>
+          <span class="lock-swipe-arrow">↑</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================
+         HOME SCREEN
+         ==================================================== -->
+    <div class="screen" id="screen-home">
+      <div class="home-wallpaper" id="home-wallpaper">
+        <img src="../La selection 3.jpg" alt="" id="home-wallpaper-img">
+      </div>
+      <div class="home-content">
+        <!-- Status bar -->
+        <div class="status-bar dark home-status">
+          <span class="status-time" id="home-time">--:--</span>
+          <div class="status-icons">
+            <span class="vital-faim" style="font-size:10px; color:#30D158;" title="Faim">▮</span>
+            <span class="vital-soif" style="font-size:10px; color:#007AFF;" title="Soif">▮</span>
+            <span class="status-icon" style="font-size:10px; letter-spacing:1px; margin-left:2px;">●●●</span>
+            <div class="status-battery" style="color:#fff">
+              <div class="battery-bar" style="border-color:#fff"><div class="battery-fill" style="background:#fff; width:70%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grille apps -->
+        <div class="app-grid">
+          <div class="app-icon-wrap" data-app="news" onclick="ouvrirApp('news')">
+            <div class="app-icon news">
+              <span>📰</span>
+              <div class="app-badge" id="badge-news">!</div>
+            </div>
+            <div class="app-label">Actualités</div>
+          </div>
+
+          <div class="app-icon-wrap" data-app="identity" onclick="ouvrirApp('identity')">
+            <div class="app-icon identity">
+              <span>🪪</span>
+            </div>
+            <div class="app-label">Identité</div>
+          </div>
+
+          <div class="app-icon-wrap" data-app="work" onclick="ouvrirApp('work')">
+            <div class="app-icon work">
+              <span>⚙️</span>
+              <div class="app-badge" id="badge-work"></div>
+            </div>
+            <div class="app-label">Travail</div>
+          </div>
+
+          <div class="app-icon-wrap" data-app="market" onclick="ouvrirApp('market')">
+            <div class="app-icon market">
+              <span>🏪</span>
+            </div>
+            <div class="app-label">Marché</div>
+          </div>
+
+          <div class="app-icon-wrap" data-app="housing" onclick="ouvrirApp('housing')">
+            <div class="app-icon housing">
+              <span>🏠</span>
+            </div>
+            <div class="app-label">Logement</div>
+          </div>
+
+          <div class="app-icon-wrap" data-app="messages" onclick="ouvrirApp('messages')">
+            <div class="app-icon messages">
+              <span>✉️</span>
+              <div class="app-badge show" id="badge-messages">1</div>
+            </div>
+            <div class="app-label">Messages</div>
+          </div>
+
+          <div class="app-icon-wrap" data-app="portrait" onclick="ouvrirApp('portrait')">
+            <div class="app-icon portrait">
+              <span>🖼️</span>
+              <div class="app-badge" id="badge-portrait"></div>
+            </div>
+            <div class="app-label">Portrait</div>
+          </div>
+
+          <div class="app-icon-wrap" data-app="banque" onclick="ouvrirApp('banque')">
+            <div class="app-icon banque">
+              <span>🏦</span>
+            </div>
+            <div class="app-label">Banque</div>
+          </div>
+
+          <div class="app-icon-wrap" data-app="galerie" onclick="ouvrirApp('galerie')">
+            <div class="app-icon galerie">
+              <span>🎨</span>
+            </div>
+            <div class="app-label">Galerie</div>
+          </div>
+
+          <div class="app-icon-wrap" id="icon-wrap-patreon" onclick="bonusLien('patreon')">
+            <div class="app-icon patreon">
+              <span class="app-icon-letter">P</span>
+            </div>
+            <div class="app-label">Patreon +50 ₩</div>
+          </div>
+
+          <div class="app-icon-wrap" id="icon-wrap-kdp" onclick="bonusLien('kdp')">
+            <div class="app-icon kdp">
+              <span>📚</span>
+            </div>
+            <div class="app-label">Ebook +50 ₩</div>
+          </div>
+        </div>
+
+        <!-- Widget finances -->
+        <div class="home-widget">
+          <div id="home-finances"></div>
+        </div>
+
+        <!-- Vitaux accueil -->
+        <div class="home-footer">
+          <div class="home-vitals-mini">
+            <div class="vital-badge">
+              <span class="vital-faim vital-badge-icon">🍚</span>
+              <span class="vital-badge-val vital-faim" id="home-faim-val">—</span>
+            </div>
+            <div class="vital-badge">
+              <span class="vital-soif vital-badge-icon">💧</span>
+              <span class="vital-badge-val vital-soif" id="home-soif-val">—</span>
+            </div>
+            <div class="vital-badge vital-badge--wons">
+              <span class="vital-badge-icon" style="font-family:'Courier Prime',monospace;">₩</span>
+              <span class="vital-badge-val" id="home-wons-val">—</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ====================================================
+         APP : BANQUE
+         ==================================================== -->
+    <div class="screen app-screen" id="app-banque">
+      <div class="status-bar">
+        <span class="status-time" id="banque-time">--:--</span>
+        <div class="status-icons">
+          <span class="status-icon" style="font-size:10px">●●●</span>
+          <div class="status-battery">
+            <div class="battery-bar"><div class="battery-fill"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="app-header">
+        <div class="app-header-top">
+          <button class="btn-back" onclick="retourHome()">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Accueil
+          </button>
+          <div class="app-title">Banque</div>
+        </div>
+        <div class="app-subtitle">Caisse Centrale de Chŏn-guk — Compte Citoyen</div>
+      </div>
+      <div class="app-body" id="banque-body">
+        <div class="placeholder-bloc">
+          <span class="placeholder-icon">🏦</span>
+          <div class="placeholder-title">Compte non initialisé</div>
+          <div>Votre compte sera disponible après votre enregistrement citoyen.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================
+         APP : ACTUALITES
+         ==================================================== -->
+    <div class="screen app-screen" id="app-news">
+      <div class="status-bar">
+        <span class="status-time" id="news-time">--:--</span>
+        <div class="status-icons">
+          <span class="status-icon" style="font-size:10px">●●●</span>
+          <div class="status-battery">
+            <div class="battery-bar"><div class="battery-fill"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="app-header">
+        <div class="app-header-top">
+          <button class="btn-back" onclick="retourHome()">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Accueil
+          </button>
+          <div class="app-title">Actualités</div>
+        </div>
+        <div class="app-subtitle">Bureau d'Information de Chŏn-guk — Lecture obligatoire</div>
+      </div>
+      <div class="app-body" id="news-body">
+        <div class="placeholder-bloc">
+          <span class="placeholder-icon">📰</span>
+          <div class="placeholder-title">Chargement des actualités...</div>
+          <div>Le Bureau d'Information prépare votre briefing quotidien.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================
+         APP : IDENTITE
+         ==================================================== -->
+    <div class="screen app-screen" id="app-identity">
+      <div class="status-bar">
+        <span class="status-time" id="identity-time">--:--</span>
+        <div class="status-icons">
+          <span class="status-icon" style="font-size:10px">●●●</span>
+          <div class="status-battery">
+            <div class="battery-bar"><div class="battery-fill"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="app-header">
+        <div class="app-header-top">
+          <button class="btn-back" onclick="retourHome()">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Accueil
+          </button>
+          <div class="app-title">Identité</div>
+        </div>
+        <div class="app-subtitle">Dossier Citoyen Officiel</div>
+      </div>
+      <div class="app-body" id="identity-body">
+        <div class="placeholder-bloc">
+          <span class="placeholder-icon">🪪</span>
+          <div class="placeholder-title">Dossier non disponible</div>
+          <div>Votre dossier citoyen n'est pas encore initialisé.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================
+         APP : TRAVAIL
+         ==================================================== -->
+    <div class="screen app-screen" id="app-work">
+      <div class="status-bar">
+        <span class="status-time" id="work-time">--:--</span>
+        <div class="status-icons">
+          <span class="status-icon" style="font-size:10px">●●●</span>
+          <div class="status-battery">
+            <div class="battery-bar"><div class="battery-fill"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="app-header">
+        <div class="app-header-top">
+          <button class="btn-back" onclick="retourHome()">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Accueil
+          </button>
+          <div class="app-title">Travail</div>
+        </div>
+        <div class="app-subtitle">Registre de présence — Secteur d'État</div>
+      </div>
+      <div class="app-body" id="work-body">
+        <div class="placeholder-bloc">
+          <span class="placeholder-icon">⚙️</span>
+          <div class="placeholder-title">Fiche de poste</div>
+          <div>Vos informations de poste seront disponibles après attribution.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================
+         APP : MARCHE
+         ==================================================== -->
+    <div class="screen app-screen" id="app-market">
+      <div class="status-bar">
+        <span class="status-time" id="market-time">--:--</span>
+        <div class="status-icons">
+          <span class="status-icon" style="font-size:10px">●●●</span>
+          <div class="status-battery">
+            <div class="battery-bar"><div class="battery-fill"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="app-header">
+        <div class="app-header-top">
+          <button class="btn-back" onclick="retourHome()">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Accueil
+          </button>
+          <div class="app-title">Marché</div>
+        </div>
+        <div class="app-subtitle">Coopérative d'État — Prix réglementés</div>
+      </div>
+      <div class="app-body" id="market-body">
+        <div class="placeholder-bloc">
+          <span class="placeholder-icon">🏪</span>
+          <div class="placeholder-title">Marché fermé</div>
+          <div>Le marché sera disponible après votre attribution citoyenne.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================
+         APP : LOGEMENT
+         ==================================================== -->
+    <div class="screen app-screen" id="app-housing">
+      <div class="status-bar">
+        <span class="status-time" id="housing-time">--:--</span>
+        <div class="status-icons">
+          <span class="status-icon" style="font-size:10px">●●●</span>
+          <div class="status-battery">
+            <div class="battery-bar"><div class="battery-fill"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="app-header">
+        <div class="app-header-top">
+          <button class="btn-back" onclick="retourHome()">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Accueil
+          </button>
+          <div class="app-title">Logement</div>
+        </div>
+        <div class="app-subtitle">Attribution de l'Office Central du Logement</div>
+      </div>
+      <div class="app-body" id="housing-body">
+        <div class="placeholder-bloc">
+          <span class="placeholder-icon">🏠</span>
+          <div class="placeholder-title">Logement non attribué</div>
+          <div>Votre logement sera attribué lors de l'enregistrement citoyen.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================
+         APP : MESSAGES
+         ==================================================== -->
+    <div class="screen app-screen" id="app-messages">
+      <div class="status-bar">
+        <span class="status-time" id="messages-time">--:--</span>
+        <div class="status-icons">
+          <span class="status-icon" style="font-size:10px">●●●</span>
+          <div class="status-battery">
+            <div class="battery-bar"><div class="battery-fill"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="app-header">
+        <div class="app-header-top">
+          <button class="btn-back" onclick="retourHome()">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Accueil
+          </button>
+          <div class="app-title">Messages</div>
+        </div>
+        <div class="app-subtitle">Correspondances officielles du Régime</div>
+      </div>
+      <div class="app-body" id="messages-body">
+        <div class="placeholder-bloc">
+          <span class="placeholder-icon">✉️</span>
+          <div class="placeholder-title">Boite vide</div>
+          <div>Aucun message du Comité pour l'instant.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================
+         APP : PORTRAIT
+         ==================================================== -->
+    <div class="screen app-screen" id="app-portrait">
+      <div class="status-bar">
+        <span class="status-time" id="portrait-time">--:--</span>
+        <div class="status-icons">
+          <span class="status-icon" style="font-size:10px">●●●</span>
+          <div class="status-battery">
+            <div class="battery-bar"><div class="battery-fill"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="app-header">
+        <div class="app-header-top">
+          <button class="btn-back" onclick="retourHome()">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Accueil
+          </button>
+          <div class="app-title">Portrait Officiel</div>
+        </div>
+        <div class="app-subtitle">Rituel quotidien d'entretien — Obligatoire</div>
+      </div>
+      <div class="app-body" id="portrait-body">
+        <div class="placeholder-bloc">
+          <span class="placeholder-icon">🖼️</span>
+          <div class="placeholder-title">Portrait non initialisé</div>
+          <div>Le portrait de La Grande Maréchale So-min-ae sera disponible après votre enregistrement.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================
+         APP : GALERIE OFFICIELLE
+         ==================================================== -->
+    <div class="screen app-screen" id="app-galerie">
+      <div class="status-bar">
+        <span class="status-time" id="galerie-time">--:--</span>
+        <div class="status-icons">
+          <span class="status-icon" style="font-size:10px">●●●</span>
+          <div class="status-battery">
+            <div class="battery-bar"><div class="battery-fill"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="app-header">
+        <div class="app-header-top">
+          <button class="btn-back" onclick="retourHome()">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Accueil
+          </button>
+          <div class="app-title">Galerie Officielle</div>
+        </div>
+        <div class="app-subtitle">Portraits de La Grande Maréchale So-min-ae</div>
+      </div>
+      <div class="app-body" id="galerie-body"></div>
+    </div>
+
+    <!-- ====================================================
+         GAME OVER
+         ==================================================== -->
+    <div class="screen" id="screen-gameover" style="background:#000; align-items:center; justify-content:center; overflow-y:auto;">
+      <div style="padding:30px 24px; width:100%; text-align:center;">
+        <div style="font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:3px; color:#555; text-transform:uppercase; margin-bottom:20px;">
+          REGISTRE OFFICIEL DES RADIATIONS — RDP CHON-GUK
+        </div>
+        <div style="border:2px solid #8B0000; padding:24px 20px; background:rgba(139,0,0,0.08); margin-bottom:20px;">
+          <div style="font-family:'Courier Prime',monospace; font-size:9px; color:#555; letter-spacing:2px; margin-bottom:12px;">ACTE DE RADIATION N° — CONFIDENTIEL</div>
+          <div id="go-titre" style="font-family:'Noto Serif KR',serif; font-size:22px; font-weight:700; color:#8B0000; margin-bottom:8px; line-height:1.3;">—</div>
+          <div id="go-sous" style="font-size:10px; color:#555; font-family:'Courier Prime',monospace; letter-spacing:1px; margin-bottom:20px;">—</div>
+          <div style="height:1px; background:rgba(139,0,0,0.3); margin-bottom:20px;"></div>
+          <div id="go-citoyen" style="font-family:'Courier Prime',monospace; font-size:13px; color:#C9A84C; margin-bottom:16px;">—</div>
+          <div id="go-jour"  style="font-size:12px; color:#555; margin-bottom:6px;">—</div>
+          <div id="go-wons"  style="font-size:12px; color:#555; margin-bottom:6px;">—</div>
+          <div id="go-note"  style="font-size:12px; color:#555; margin-bottom:20px;">—</div>
+          <div style="font-size:11px; color:#444; line-height:1.7; font-style:italic;">
+            Le Registre Civil de la République Démocratique et Populaire de Chŏn-guk acte la radiation du citoyen susmentionné. Son dossier sera conservé pour une durée de 30 ans conformément au Décret n°12 de La Grande Maréchale So-min-ae.
+          </div>
+        </div>
+        <button class="btn-secondary" onclick="recommencer()" style="width:100%;">Recommencer — nouvelle citoyenneté</button>
+        <div style="height:30px;"></div>
+      </div>
+    </div>
+
+    <!-- Push notifications (overlay) -->
+    <div id="push-notifications"></div>
+
+  </div><!-- /screens -->
+
+  <!-- Overlay sommeil -->
+  <div id="sleep-overlay">
+    <div class="sleep-content">
+      <div class="sleep-moon">🌙</div>
+      <div class="sleep-zzz">
+        <span>Z</span><span>Z</span><span>Z</span>
+      </div>
+      <div class="sleep-label">En sommeil</div>
+    </div>
+  </div>
+
+  <!-- Barre navigation Android — overlay permanent -->
+  <div class="android-nav" id="android-nav" style="display:none;">
+    <button class="nav-btn" onclick="navRetour()" title="Retour">◁</button>
+    <button class="nav-btn nav-btn-home" onclick="navAccueil()" title="Accueil">⬤</button>
+    <button class="nav-btn nav-btn-sleep" onclick="dormirJournee()" title="Dormir">🌙</button>
+  </div>
+
+</div><!-- /phone -->
+<!-- ============================================================
+     SCRIPTS — ordre de chargement important
+     ============================================================ -->
+<script src="js/constants.js"></script>
+<script src="js/data/actualites.js"></script>
+<script src="js/state.js"></script>
+<script src="js/save.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/onboarding.js"></script>
+<script src="js/apps/identity.js"></script>
+<script src="js/apps/work.js"></script>
+<script src="js/apps/market.js"></script>
+<script src="js/apps/housing.js"></script>
+<script src="js/apps/messages.js"></script>
+<script src="js/apps/news.js"></script>
+<script src="js/apps/portrait.js"></script>
+<script src="js/apps/bank.js"></script>
+<script src="js/apps/gallery.js"></script>
+<script src="js/main.js"></script>
+</html>
