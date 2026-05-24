@@ -45,12 +45,12 @@ Ou directement en ligne :
 
 ## Structure du projet
 
-Chon-guk/
-├── index.html        — point d'entrée
-├── style.css         — interface Chŏn-guk OS
-├── app.js            — logique principale
-├── imgs/             — portraits officiels
-└── README.md
+- Chon-guk/
+- ├── index.html        — point d'entrée
+- ├── style.css         — interface Chŏn-guk OS
+- ├── app.js            — logique principale
+- ├── imgs/             — portraits officiels
+- └── README.md
 ---
 
 ## Contexte éditorial
