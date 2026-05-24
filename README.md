@@ -58,9 +58,9 @@ Chon-guk/
 *La Sélection* est une dark romance psychologique dystopique —  
 tome 3 de la collection **Hors Jeu**, publiée sous le label **Braise Noire**.
 
-- 📖 [Le roman sur Amazon](#)
-- 🎨 [Patreon Braise Noire](#)
-- 🎮 [Jouer sur itch.io](#)
+- 📖 [Le roman sur Amazon](https://www.amazon.fr/stores/Braise-Noire/author/B0GXN7XHTT)
+- 🎨 [Patreon Braise Noire](https://www.patreon.com/c/BraiseNoire)
+- 🎮 [Jouer sur itch.io](https://braisenoire.itch.io/chon-guk)
 
 ---
 
